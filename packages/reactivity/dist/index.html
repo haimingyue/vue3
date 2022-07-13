@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--    <script src="../../../node_modules/@vue/reactivity/dist/reactivity.global.js"></script>-->
+    <script src="./reactivity.global.js"></script>
+    <div id="app"></div>
+    <script>
+        // reactive
+        // const { reactive, effect, shallowReactive, readonly, shallowReadonly } = VueReactivity
+        const { reactive, effect } = VueReactivity
+        let data = { name: 'zf', age: 13, address: {num: 1234}}
+        const state1 = reactive(data)
+        const state2 = reactive(data)
+        const state3 = reactive(state2)
+        console.log(state1);
+        console.log(state2);
+        console.log('state', state1 === state2)
+        console.log('state', state2 === state3)
+        // console.log('state', state.address)
+
+        // effect(() => {
+        //     let app = document.getElementById('app');
+        //     app.innerHTML = state.name + '今年' + state.age + '岁了';
+        // })
+        //
+        // setTimeout(() => {
+        //     state.age = 14
+        // }, 1000)
+    </script>
+</body>
+</html>
