@@ -16,19 +16,26 @@
         // const { reactive, effect, shallowReactive, readonly, shallowReadonly } = VueReactivity
         const { reactive, effect } = VueReactivity
         let data = { name: 'zf', age: 13, address: {num: 1234}}
-        const state1 = reactive(data)
-        const state2 = reactive(data)
-        const state3 = reactive(state2)
-        console.log(state1);
-        console.log(state2);
-        console.log('state', state1 === state2)
-        console.log('state', state2 === state3)
+        const state = reactive(data)
+        // const state1 = reactive(data)
+        // const state2 = reactive(data)
+        // const state3 = reactive(state2)
+        // console.log(state1);
+        // console.log(state2);
+        // console.log('state', state1 === state2)
+        // console.log('state', state2 === state3)
         // console.log('state', state.address)
+        // 期望用户这么做的时候，产生一个依赖收集
+        // name和age变化的时候，重新渲染
+        effect(() => {
+            state.age = Math.random()
+            let app = document.getElementById('app');
+            app.innerHTML = state.name + '今年' + state.age + '岁了';
+        })
 
-        // effect(() => {
-        //     let app = document.getElementById('app');
-        //     app.innerHTML = state.name + '今年' + state.age + '岁了';
-        // })
+        setTimeout(() => {
+            state.age++
+        }, 1000)
         //
         // setTimeout(() => {
         //     state.age = 14
